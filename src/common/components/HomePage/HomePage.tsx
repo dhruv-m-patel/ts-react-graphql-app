@@ -33,6 +33,7 @@ export default function HomePage(): JSX.Element {
       } else {
         setError('Error fetching message from api');
       }
+      setIsFetching(false);
     };
     setIsFetching(true);
     getApiMessage();
