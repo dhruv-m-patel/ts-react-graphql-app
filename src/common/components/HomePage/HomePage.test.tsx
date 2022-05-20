@@ -1,20 +1,12 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import HomePage from './HomePage';
 
 describe('HomePage', () => {
   test('it should render', () => {
     render(
-      <MemoryRouter>
-        <HomePage
-          messageFromApi="Hello World!"
-          isFetching={false}
-          error={undefined}
-          getApiMessage={() => {}}
-        />
-      </MemoryRouter>
+      <HomePage />
     );
-    expect(screen.getByText(/Hello World/)).toBeInTheDocument();
+    expect(screen.getByText(/Welcome to React App/)).toBeInTheDocument();
   });
 });

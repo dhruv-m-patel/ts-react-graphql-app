@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import ThemeProvider from '@material-ui/styles/ThemeProvider';
+import { ThemeProvider } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 import { BasicTheme } from './theme';
 import '@testing-library/jest-dom';
