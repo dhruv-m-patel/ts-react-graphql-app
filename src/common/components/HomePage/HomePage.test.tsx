@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { MockedProvider } from '@apollo/client/testing'
+import { MockedProvider } from '@apollo/client/testing';
 import HomePage from './HomePage';
 import { ALL_USERS } from './PetOwnerDropdown';
 import db from '../../../graphql/server/db.json';
@@ -22,14 +22,14 @@ describe('HomePage', () => {
         request: {
           query: SEARCH_PETS,
           variables: {
-            ownerId: -1
+            ownerId: -1,
           },
         },
         result: {
           data: db.pets,
         },
       },
-    ]
+    ];
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <HomePage />
