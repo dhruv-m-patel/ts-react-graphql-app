@@ -4,9 +4,14 @@ import ReactDOMServer from 'react-dom/server';
 import path from 'path';
 import { StaticRouter } from 'react-router-dom';
 import { ChunkExtractor } from '@loadable/server';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { getMarkupFromTree } from '@apollo/client/react/ssr';
+import { SchemaLink } from '@apollo/client/link/schema';
 import Router from '../../common/router';
+import buildContext from '../../graphql/server/context';
+import schema from '../../graphql/server/schema';
 
-export default function renderPage(
+export default async function renderPage(
   req: Request,
   res: Response,
   next: NextFunction
@@ -22,20 +27,6 @@ export default function renderPage(
       return;
     }
 
-    // @ts-ignore
-    const request = req as any;
-
-    const preloadedState = request.initialState || {};
-    if (!request.initialState) {
-      request.initialState = preloadedState;
-    }
-
-    const html = ReactDOMServer.renderToString(
-      <StaticRouter location={req.url} context={context}>
-        <Router />
-      </StaticRouter>
-    );
-
     const statsFile = path.join(
       process.cwd(),
       './build-static/loadable-stats.json'
@@ -46,27 +37,42 @@ export default function renderPage(
       publicPath: '/',
     });
 
-    const baseUrl = process.env.BASE_URL
-      ? `<base href="${process.env.BASE_URL}">`
-      : '';
+    const client = new ApolloClient({
+      cache: new InMemoryCache(),
+      ssrMode: true,
+      link: new SchemaLink({ context: buildContext({ req }), schema }),
+    });
+    const graphState = client.extract();
+
+    const app = ReactDOMServer.renderToString(
+      <StaticRouter location={req.url} context={context}>
+        <ApolloProvider client={client}>
+          <Router />
+        </ApolloProvider>
+      </StaticRouter>
+    );
+
+    const ssrHtml = await getMarkupFromTree({
+      tree: app,
+      renderFunction: ReactDOMServer.renderToString,
+    });
 
     res.send(`
       <!DOCTYPE html>
       <html lang="en-US">
         <head>
-          ${baseUrl}
           <link href="/images/favicon.ico" rel="shortcut icon">
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" priority="1" />
           <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-          <title>React App</title>
+          <title>Typescript React GraphQL App</title>
           ${extractor.getLinkTags()}
-          <script id="stateData">window.__PRELOADED_STATE__ = ${JSON.stringify(
-            preloadedState
-          ).replace(/</g, '\\u003c')};</script>
+          <script type="text/javascript">
+            window.__PRELOADED_STATE__ = ${JSON.stringify(graphState)};
+          </script>
         </head>
         <body>
-          <div id="root">${html}</div>
+          <div id="root">${ssrHtml}</div>
           ${extractor.getScriptTags()}
         </body>
       </html>

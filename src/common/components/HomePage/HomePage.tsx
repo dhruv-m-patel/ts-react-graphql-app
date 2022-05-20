@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { ChangeEvent, useCallback, useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import axios, { AxiosResponse } from 'axios';
+import { gql, useQuery } from '@apollo/client';
 import { StyleVariables } from '../../styles';
 import Page from '../Page';
+import PetOwnerDropdown from './PetOwnerDropdown';
+import PetList from './PetList';
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -19,24 +21,10 @@ const useStyles = makeStyles(() => ({
 
 export default function HomePage(): JSX.Element {
   const classes = useStyles();
-  const [message, setMessage] = useState<string | undefined>();
-  const [isFetching, setIsFetching] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
+  const [ownerId, setOwnerId] = useState<number>(-1);
 
-  useEffect(() => {
-    const getApiMessage = async () => {
-      const response: AxiosResponse<{ message: string }> = await axios.get(
-        '/api/message'
-      );
-      if (!axios.isAxiosError(response)) {
-        setMessage(response.data.message);
-      } else {
-        setError('Error fetching message from api');
-      }
-      setIsFetching(false);
-    };
-    setIsFetching(true);
-    getApiMessage();
+  const handlePetOwnerChange = useCallback(({ target }) => {
+    setOwnerId(Number(target.value));
   }, []);
 
   return (
@@ -44,18 +32,12 @@ export default function HomePage(): JSX.Element {
       <Typography variant="h1" className={classes.title}>
         Welcome to React App
       </Typography>
-      {isFetching && (
-        <Typography variant="h5" className={classes.loadingMessage}>
-          Fetching message from API
-        </Typography>
-      )}
-      {error ? (
-        <Typography variant="h5" className={classes.error}>
-          {error}
-        </Typography>
-      ) : (
-        <Typography variant="h5">{message}</Typography>
-      )}
+      <br />
+      <br />
+      <PetOwnerDropdown onChange={handlePetOwnerChange} />
+      <br />
+      <br />
+      <PetList ownerId={ownerId} />
     </Page>
   );
 }

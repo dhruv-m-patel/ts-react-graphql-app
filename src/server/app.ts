@@ -12,6 +12,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import 'fetch-everywhere';
 import renderPage from './middleware/renderPage';
 import { ResponseError } from './types';
+import graphqlServer from '../graphql/server';
 
 function finalErrorHandler(
   err: ResponseError,
@@ -120,6 +121,11 @@ const app: Application = configureApp({
   setup: (webApp) => {
     webApp.use('*', renderPage);
   },
+});
+
+graphqlServer.applyMiddleware({
+  app,
+  path: '/graphql',
 });
 
 export default app;

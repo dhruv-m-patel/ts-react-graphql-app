@@ -1,0 +1,63 @@
+{
+  users {
+    id
+    username
+    pets {
+      name
+      type
+      createdAt
+    }
+  }
+
+  users(search: { id: "2" }) {
+    id
+    username
+    pets {
+      name
+      type
+      createdAt
+    }
+  }
+
+  users(search: { username: "jane" }) {
+    id
+    username
+    pets {
+      name
+      type
+      createdAt
+    }
+  }
+
+  pets {
+    name
+    type
+    owner {
+      username
+    }
+  }
+
+  pets(search: { name: "flu" }) {
+    name
+    type
+    owner {
+      username
+    }
+  }
+
+  pets(search: { id: "1" }) {
+    name
+    type
+    owner {
+      username
+    }
+  }
+
+  pets(ownerId: "1") {
+    name
+    type
+    owner {
+      username
+    }
+  }
+}

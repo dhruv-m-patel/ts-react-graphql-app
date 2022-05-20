@@ -1,0 +1,46 @@
+{
+  "users": [
+    { "id": 1, "username": "John Doe" },
+    { "id": 4, "username": "Jane Doe" },
+    { "id": 3, "username": "James Doe" },
+    { "id": 2, "username": "Joe Doe" },
+    { "id": 5, "username": "Jack Doe" }
+  ],
+  "pets": [
+    {
+      "id": 1,
+      "name": "Flubber",
+      "createdAt": "2020-01-01",
+      "type": "dog",
+      "ownerId": 4
+    },
+    {
+      "id": 2,
+      "name": "Bingo",
+      "createdAt": "2020-01-05",
+      "type": "dog",
+      "ownerId": 1
+    },
+    {
+      "id": 3,
+      "name": "Tuna",
+      "createdAt": "2020-01-02",
+      "type": "cat",
+      "ownerId": 3
+    },
+    {
+      "id": 4,
+      "name": "Cuka",
+      "createdAt": "2020-01-10",
+      "type": "cat",
+      "ownerId": 2
+    },
+    {
+      "id": 5,
+      "name": "Bulma",
+      "createdAt": "2020-01-11",
+      "type": "lizard",
+      "ownerId": 5
+    }
+  ]
+}
