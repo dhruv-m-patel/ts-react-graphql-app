@@ -25,13 +25,15 @@ export default function HomePage(): JSX.Element {
 
   useEffect(() => {
     const getApiMessage = async () => {
-      const response: AxiosResponse<{ message: string }> = await axios.get('/api/message');
+      const response: AxiosResponse<{ message: string }> = await axios.get(
+        '/api/message'
+      );
       if (!axios.isAxiosError(response)) {
         setMessage(response.data.message);
       } else {
         setError('Error fetching message from api');
       }
-    }
+    };
     setIsFetching(true);
     getApiMessage();
   }, []);
