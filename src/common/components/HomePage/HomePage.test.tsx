@@ -4,9 +4,7 @@ import HomePage from './HomePage';
 
 describe('HomePage', () => {
   test('it should render', () => {
-    render(
-      <HomePage />
-    );
+    render(<HomePage />);
     expect(screen.getByText(/Welcome to React App/)).toBeInTheDocument();
   });
 });
