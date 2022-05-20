@@ -11,7 +11,7 @@ import {
   Paper,
 } from '@material-ui/core';
 
-const SEARCH_PETS = gql`
+export const SEARCH_PETS = gql`
   query SearchPets($ownerId: String) {
     pets(ownerId: $ownerId) {
       id

@@ -9,7 +9,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 
-const ALL_USERS = gql`
+export const ALL_USERS = gql`
   {
     users {
       id
