@@ -36,9 +36,9 @@ export default function Page({ className, children }: PageProps): JSX.Element {
     <div className="page">
       <CssBaseline />
       <ThemeProvider theme={BasicTheme}>
-      <Container className={clsx(classes.page, className)} maxWidth={false}>
-        {children}
-      </Container>
+        <Container className={clsx(classes.page, className)} maxWidth={false}>
+          {children}
+        </Container>
       </ThemeProvider>
     </div>
   );
