@@ -1,7 +1,6 @@
-import React, { ChangeEvent, useCallback, useState } from 'react';
-import { makeStyles } from '@material-ui/core';
+import React, { useCallback, useState } from 'react';
+import { Container, makeStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import { gql, useQuery } from '@apollo/client';
 import { StyleVariables } from '../../styles';
 import Page from '../Page';
 import PetOwnerDropdown from './PetOwnerDropdown';
@@ -29,15 +28,13 @@ export default function HomePage(): JSX.Element {
 
   return (
     <Page>
-      <Typography variant="h1" className={classes.title}>
-        Welcome to React App
-      </Typography>
-      <br />
-      <br />
-      <PetOwnerDropdown onChange={handlePetOwnerChange} />
-      <br />
-      <br />
-      <PetList ownerId={ownerId} />
+      <Container>
+        <Typography variant="h1" className={classes.title}>
+          Welcome to React App
+        </Typography>
+        <PetOwnerDropdown onChange={handlePetOwnerChange} />
+        <PetList ownerId={ownerId} />
+      </Container>
     </Page>
   );
 }

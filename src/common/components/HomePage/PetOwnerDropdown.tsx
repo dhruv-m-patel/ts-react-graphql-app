@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core';
 
 export const ALL_USERS = gql`
-  {
+  query FetchAllUsers {
     users {
       id
       username
@@ -20,7 +20,11 @@ export const ALL_USERS = gql`
 
 const useStyles = makeStyles(() => ({
   formControl: {
-    minWidth: '200px',
+    width: '100%',
+    marginBottom: '2rem',
+    '& .MuiInputBase-root': {
+      backgroundColor: 'transparent',
+    },
   },
 }));
 

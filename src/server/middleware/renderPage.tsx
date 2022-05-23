@@ -66,6 +66,9 @@ export default async function renderPage(
           <meta name="viewport" content="width=device-width, initial-scale=1" priority="1" />
           <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
           <title>Typescript React GraphQL App</title>
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
           ${extractor.getLinkTags()}
           <script type="text/javascript">
             window.__PRELOADED_STATE__ = ${JSON.stringify(graphState)};

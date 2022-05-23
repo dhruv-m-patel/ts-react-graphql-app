@@ -13,9 +13,10 @@ export const theme: ThemeOptions = {
   typography: {
     h1: {
       fontFamily: StyleVariables.fonts.family.primary,
-      fontWeight: StyleVariables.fonts.weight.bold,
+      fontWeight: StyleVariables.fonts.weight.medium,
       fontSize: StyleVariables.fonts.size.h1,
       lineHeight: StyleVariables.fonts.lineHeight.h1,
+      marginBottom: StyleVariables.fonts.lineHeight.h1,
     },
     h2: {
       fontFamily: StyleVariables.fonts.family.primary,
