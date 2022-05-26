@@ -1,17 +1,13 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import {
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from '@mui/material';
+import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import {
   AccountCircle as AccountCircleIcon,
   Description as DescriptionIcon,
   Payment as PaymentIcon,
   People as PeopleIcon,
   Settings as SettingsIcon,
- } from '@mui/icons-material';
+} from '@mui/icons-material';
 import Navigation from './Navigation';
 import Text from '../Text';
 

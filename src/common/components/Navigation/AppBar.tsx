@@ -98,7 +98,8 @@ export default function AppBar({
               [`${className}-drawerButton`]: !!className,
             })}
             data-testid="drawerIcon"
-            size="large">
+            size="large"
+          >
             <MenuIcon />
           </IconButton>
         )}

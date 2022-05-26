@@ -29,7 +29,8 @@ export default async function renderPage(
     }
 
     const cache = createEmotionCache();
-    const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
+    const { extractCriticalToChunks, constructStyleTagsFromChunks } =
+      createEmotionServer(cache);
 
     const statsFile = path.join(
       process.cwd(),

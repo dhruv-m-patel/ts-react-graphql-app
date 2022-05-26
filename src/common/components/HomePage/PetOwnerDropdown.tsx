@@ -30,9 +30,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 interface PetOwnerDropdownProps {
-  onChange: (
-    event: SelectChangeEvent
-  ) => void;
+  onChange: (event: SelectChangeEvent) => void;
 }
 
 export default function PetOwnerDropdown({

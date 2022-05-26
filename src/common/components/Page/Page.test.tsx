@@ -17,15 +17,17 @@ describe('Page', () => {
   });
 
   test('it renders with given theme', () => {
-    const customTheme = createTheme(adaptV4Theme({
-      palette: {
-        mode: 'dark',
-        primary: {
-          main: StyleVariables.colors.blue,
-          contrastText: StyleVariables.colors.darkGrey,
+    const customTheme = createTheme(
+      adaptV4Theme({
+        palette: {
+          mode: 'dark',
+          primary: {
+            main: StyleVariables.colors.blue,
+            contrastText: StyleVariables.colors.darkGrey,
+          },
         },
-      },
-    }));
+      })
+    );
 
     render(
       <Page theme={customTheme}>
