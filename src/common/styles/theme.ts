@@ -1,8 +1,7 @@
-import { DeprecatedThemeOptions, adaptV4Theme } from '@mui/material';
-import { createTheme } from '@mui/material/styles';
+import { createTheme, ThemeOptions } from '@mui/material/styles';
 import { StyleVariables } from './variables';
 
-export const theme: DeprecatedThemeOptions = {
+export const theme: ThemeOptions = {
   palette: {
     mode: 'light',
     primary: {
@@ -76,39 +75,39 @@ export const theme: DeprecatedThemeOptions = {
       lineHeight: StyleVariables.fonts.lineHeight.xs,
     },
   },
-  overrides: {
-    MuiButton: {
-      contained: {
-        fontFamily: StyleVariables.fonts.family.primary,
-      },
-      sizeSmall: {
-        fontSize: StyleVariables.fonts.size.small,
-      },
-    },
-    MuiSelect: {
-      select: {
-        fontSize: StyleVariables.fonts.size.regular,
-        fontFamily: StyleVariables.fonts.family.primary,
-      },
-    },
-    MuiInputLabel: {
-      root: {
-        fontSize: StyleVariables.fonts.size.regular,
-        fontFamily: StyleVariables.fonts.family.primary,
-      },
-    },
-    MuiInputBase: {
-      input: {
-        fontSize: StyleVariables.fonts.size.regular,
-        fontFamily: StyleVariables.fonts.family.primary,
-      },
-      root: {
-        fontSize: StyleVariables.fonts.size.regular,
-      },
-    },
-  },
+  // overrides: {
+  //   MuiButton: {
+  //     contained: {
+  //       fontFamily: StyleVariables.fonts.family.primary,
+  //     },
+  //     sizeSmall: {
+  //       fontSize: StyleVariables.fonts.size.small,
+  //     },
+  //   },
+  //   MuiSelect: {
+  //     select: {
+  //       fontSize: StyleVariables.fonts.size.regular,
+  //       fontFamily: StyleVariables.fonts.family.primary,
+  //     },
+  //   },
+  //   MuiInputLabel: {
+  //     root: {
+  //       fontSize: StyleVariables.fonts.size.regular,
+  //       fontFamily: StyleVariables.fonts.family.primary,
+  //     },
+  //   },
+  //   MuiInputBase: {
+  //     input: {
+  //       fontSize: StyleVariables.fonts.size.regular,
+  //       fontFamily: StyleVariables.fonts.family.primary,
+  //     },
+  //     root: {
+  //       fontSize: StyleVariables.fonts.size.regular,
+  //     },
+  //   },
+  // },
 };
 
-const BasicTheme = createTheme(adaptV4Theme(theme));
+const BasicTheme = createTheme(theme);
 
 export { theme as DeprecatedThemeOptions, BasicTheme };
