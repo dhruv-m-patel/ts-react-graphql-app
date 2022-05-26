@@ -9,7 +9,7 @@ import {
   TableHead,
   TableRow,
   Paper,
-} from '@material-ui/core';
+} from '@mui/material';
 
 export const SEARCH_PETS = gql`
   query SearchPets($ownerId: String) {

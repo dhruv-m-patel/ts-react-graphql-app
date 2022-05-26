@@ -63,7 +63,7 @@ function getWebpackConfig(environment = 'production', basePath) {
         cacheGroups: {
           vendor: {
             chunks: 'initial',
-            test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom)[\\/]/,
+            test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom|@mui\/core|@mui\/icons-material)[\\/]/,
             name: 'vendor',
             enforce: true,
           },

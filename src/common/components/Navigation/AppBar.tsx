@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import MAppBar from '@material-ui/core/AppBar';
-import MToolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import { Theme } from '@mui/material/styles';
+import { createStyles, makeStyles } from '@mui/styles';
+import {
+  AppBar as MAppBar,
+  Toolbar as MToolbar,
+  IconButton,
+} from '@mui/material';
+import { Menu as MenuIcon } from '@mui/icons-material';
 import clsx from 'clsx';
 import Image from '../Image';
 import { StyleVariables } from '../../styles/variables';
@@ -95,7 +98,7 @@ export default function AppBar({
               [`${className}-drawerButton`]: !!className,
             })}
             data-testid="drawerIcon"
-          >
+            size="large">
             <MenuIcon />
           </IconButton>
         )}

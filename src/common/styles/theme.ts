@@ -1,10 +1,10 @@
-import { ThemeOptions } from '@material-ui/core';
-import { createTheme } from '@material-ui/core/styles';
+import { DeprecatedThemeOptions, adaptV4Theme } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 import { StyleVariables } from './variables';
 
-export const theme: ThemeOptions = {
+export const theme: DeprecatedThemeOptions = {
   palette: {
-    type: 'light',
+    mode: 'light',
     primary: {
       main: StyleVariables.colors.blue,
       contrastText: StyleVariables.colors.white,
@@ -90,10 +90,6 @@ export const theme: ThemeOptions = {
         fontSize: StyleVariables.fonts.size.regular,
         fontFamily: StyleVariables.fonts.family.primary,
       },
-      selectMenu: {
-        fontSize: StyleVariables.fonts.size.regular,
-        fontFamily: StyleVariables.fonts.family.primary,
-      },
     },
     MuiInputLabel: {
       root: {
@@ -113,6 +109,6 @@ export const theme: ThemeOptions = {
   },
 };
 
-const BasicTheme = createTheme(theme);
+const BasicTheme = createTheme(adaptV4Theme(theme));
 
-export { theme as ThemeOptions, BasicTheme };
+export { theme as DeprecatedThemeOptions, BasicTheme };

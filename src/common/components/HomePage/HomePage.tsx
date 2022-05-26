@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
-import { Container, makeStyles } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+import makeStyles from '@mui/styles/makeStyles';
+import { Container } from '@mui/material';
+import Text from '../Text';
 import { StyleVariables } from '../../styles';
 import Page from '../Page';
 import PetOwnerDropdown from './PetOwnerDropdown';
@@ -29,9 +30,9 @@ export default function HomePage(): JSX.Element {
   return (
     <Page>
       <Container>
-        <Typography variant="h1" className={classes.title}>
+        <Text as="h1" className={classes.title}>
           Welcome to React App
-        </Typography>
+        </Text>
         <PetOwnerDropdown onChange={handlePetOwnerChange} />
         <PetList ownerId={ownerId} />
       </Container>

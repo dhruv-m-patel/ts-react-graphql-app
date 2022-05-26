@@ -4,10 +4,11 @@ import gql from 'graphql-tag';
 import {
   FormControl,
   Select,
+  SelectChangeEvent,
   MenuItem,
   InputLabel,
-  makeStyles,
-} from '@material-ui/core';
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 
 export const ALL_USERS = gql`
   query FetchAllUsers {
@@ -30,9 +31,7 @@ const useStyles = makeStyles(() => ({
 
 interface PetOwnerDropdownProps {
   onChange: (
-    event: React.ChangeEvent<{
-      value: unknown;
-    }>
+    event: SelectChangeEvent
   ) => void;
 }
 
