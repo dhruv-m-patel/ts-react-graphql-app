@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import { Container } from '@mui/material';
-import Text from '../Text';
+import Text from '../../components/Text';
 import { StyleVariables } from '../../styles';
-import Page from '../Page';
-import PetOwnerDropdown from './PetOwnerDropdown';
-import PetList from './PetList';
+import Page from '../../components/Page';
+import PetOwnerDropdown from '../../components/PetOwnerDropDown';
+import PetList from '../../components/PetList';
 
 const useStyles = makeStyles(() => ({
   title: {

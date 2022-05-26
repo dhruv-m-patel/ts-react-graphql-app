@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Theme } from '@mui/material/styles';
 import { createStyles, makeStyles } from '@mui/styles';
 import {
   AppBar as MAppBar,
   Toolbar as MToolbar,
   IconButton,
+  Theme,
 } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import clsx from 'clsx';
@@ -13,7 +13,7 @@ import { StyleVariables } from '../../styles/variables';
 
 interface AppBarStyleProps {
   drawerOpen: boolean;
-}
+};
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

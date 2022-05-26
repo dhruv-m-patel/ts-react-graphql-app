@@ -3,7 +3,7 @@
 exports[`theme it provides basic theme correctly 1`] = `
 <div>
   <h1
-    class="MuiTypography-root MuiTypography-h1"
+    class="MuiTypography-root MuiTypography-h1 css-o2w69a-MuiTypography-root"
   >
     Hello World
   </h1>

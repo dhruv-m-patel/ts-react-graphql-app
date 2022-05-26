@@ -8,7 +8,8 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { getMarkupFromTree } from '@apollo/client/react/ssr';
 import { SchemaLink } from '@apollo/client/link/schema';
 import createEmotionServer from '@emotion/server/create-instance';
-import Router, { createEmotionCache } from '../../common/router';
+import Router from '../../common/router';
+import { createEmotionCache } from '../../common/components/Main';
 import buildContext from '../../graphql/server/context';
 import schema from '../../graphql/server/schema';
 

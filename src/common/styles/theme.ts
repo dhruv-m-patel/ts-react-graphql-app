@@ -1,4 +1,4 @@
-import { createTheme, ThemeOptions } from '@mui/material/styles';
+import { createTheme, Theme, ThemeOptions } from '@mui/material/styles';
 import { StyleVariables } from './variables';
 
 export const theme: ThemeOptions = {
@@ -75,39 +75,46 @@ export const theme: ThemeOptions = {
       lineHeight: StyleVariables.fonts.lineHeight.xs,
     },
   },
-  // overrides: {
-  //   MuiButton: {
-  //     contained: {
-  //       fontFamily: StyleVariables.fonts.family.primary,
-  //     },
-  //     sizeSmall: {
-  //       fontSize: StyleVariables.fonts.size.small,
-  //     },
-  //   },
-  //   MuiSelect: {
-  //     select: {
-  //       fontSize: StyleVariables.fonts.size.regular,
-  //       fontFamily: StyleVariables.fonts.family.primary,
-  //     },
-  //   },
-  //   MuiInputLabel: {
-  //     root: {
-  //       fontSize: StyleVariables.fonts.size.regular,
-  //       fontFamily: StyleVariables.fonts.family.primary,
-  //     },
-  //   },
-  //   MuiInputBase: {
-  //     input: {
-  //       fontSize: StyleVariables.fonts.size.regular,
-  //       fontFamily: StyleVariables.fonts.family.primary,
-  //     },
-  //     root: {
-  //       fontSize: StyleVariables.fonts.size.regular,
-  //     },
-  //   },
-  // },
+  components: {
+    MuiButtonBase: {
+      styleOverrides: {
+        root: {
+          fontSize: StyleVariables.fonts.size.small,
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        select: {
+          fontSize: StyleVariables.fonts.size.regular,
+          fontFamily: StyleVariables.fonts.family.primary,
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontSize: StyleVariables.fonts.size.regular,
+          fontFamily: StyleVariables.fonts.family.primary,
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        input: {
+          fontSize: StyleVariables.fonts.size.regular,
+          fontFamily: StyleVariables.fonts.family.primary,
+        },
+        root: {
+          fontSize: StyleVariables.fonts.size.regular,
+        },
+      },
+    },
+  },
 };
 
-const BasicTheme = createTheme(theme);
+const BasicTheme = createTheme(theme) as Theme;
 
-export { theme as DeprecatedThemeOptions, BasicTheme };
+export { theme as BasicThemeOptions, BasicTheme };
+
+export default BasicTheme;
