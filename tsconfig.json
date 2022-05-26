@@ -16,7 +16,8 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "typeRoots": ["node_modules/@types", "./typings"],
-    "types": ["node", "jest", "@types/jest"]
+    "types": ["node", "jest", "@types/jest"],
+    "sourceMap": true
   },
   "include": ["./src"],
   "exclude": [
