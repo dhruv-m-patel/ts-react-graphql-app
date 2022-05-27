@@ -7,9 +7,12 @@ import { ChunkExtractor } from '@loadable/server';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { getMarkupFromTree } from '@apollo/client/react/ssr';
 import { SchemaLink } from '@apollo/client/link/schema';
+import createEmotionServer from '@emotion/server/create-instance';
 import Router from '../../common/router';
+import { createEmotionCache } from '../../common/components/Main';
 import buildContext from '../../graphql/server/context';
 import schema from '../../graphql/server/schema';
+import { ContextType } from '../../graphql/types';
 
 export default async function renderPage(
   req: Request,
@@ -27,6 +30,10 @@ export default async function renderPage(
       return;
     }
 
+    const cache = createEmotionCache();
+    const { extractCriticalToChunks, constructStyleTagsFromChunks } =
+      createEmotionServer(cache);
+
     const statsFile = path.join(
       process.cwd(),
       './build-static/loadable-stats.json'
@@ -40,11 +47,14 @@ export default async function renderPage(
     const client = new ApolloClient({
       cache: new InMemoryCache(),
       ssrMode: true,
-      link: new SchemaLink({ context: buildContext({ req }), schema }),
+      link: new SchemaLink({
+        context: buildContext({ req: req as unknown as ContextType }),
+        schema,
+      }),
     });
     const graphState = client.extract();
 
-    const app = ReactDOMServer.renderToString(
+    const app = (
       <StaticRouter location={req.url} context={context}>
         <ApolloProvider client={client}>
           <Router />
@@ -57,15 +67,20 @@ export default async function renderPage(
       renderFunction: ReactDOMServer.renderToString,
     });
 
+    // Grab the CSS from emotion
+    const emotionChunks = extractCriticalToChunks(ssrHtml);
+    const css = constructStyleTagsFromChunks(emotionChunks);
+
     res.send(`
       <!DOCTYPE html>
       <html lang="en-US">
         <head>
           <link href="/images/favicon.ico" rel="shortcut icon">
+          <title>Typescript React GraphQL App</title>
+          ${css}
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" priority="1" />
           <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-          <title>Typescript React GraphQL App</title>
           <link rel="preconnect" href="https://fonts.googleapis.com">
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
           <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">

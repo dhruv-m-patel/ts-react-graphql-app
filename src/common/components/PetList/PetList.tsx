@@ -9,7 +9,8 @@ import {
   TableHead,
   TableRow,
   Paper,
-} from '@material-ui/core';
+} from '@mui/material';
+import { PetType } from '../../../graphql/types';
 
 export const SEARCH_PETS = gql`
   query SearchPets($ownerId: String) {
@@ -59,7 +60,7 @@ export default function PetList({ ownerId }: PetListProps): JSX.Element {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.pets.map((pet) => (
+          {data.pets.map((pet: PetType) => (
             <TableRow key={pet.id}>
               <TableCell>{pet.id}</TableCell>
               <TableCell>{pet.name}</TableCell>

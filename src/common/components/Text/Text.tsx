@@ -1,7 +1,7 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import { Variant } from '@material-ui/core/styles/createTypography';
-import { makeStyles } from '@material-ui/core';
+import { Typography } from '@mui/material';
+import { Variant } from '@mui/material/styles/createTypography';
+import { makeStyles } from '@mui/styles';
 import clsx from 'clsx';
 
 export type TextVariant =

@@ -1,16 +1,19 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { ThemeProvider } from '@material-ui/styles';
-import Typography from '@material-ui/core/Typography';
+import { ThemeProvider } from '@mui/styles';
+import Typography from '@mui/material/Typography';
+import { StyledEngineProvider } from '@mui/material/styles';
 import { BasicTheme } from './theme';
 import '@testing-library/jest-dom';
 
 describe('theme', () => {
   test('it provides basic theme correctly', () => {
     const { container } = render(
-      <ThemeProvider theme={BasicTheme}>
-        <Typography variant="h1">Hello World</Typography>
-      </ThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={BasicTheme}>
+          <Typography variant="h1">Hello World</Typography>
+        </ThemeProvider>
+      </StyledEngineProvider>
     );
     expect(container).toMatchSnapshot();
   });

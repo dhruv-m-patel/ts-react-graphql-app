@@ -1,10 +1,11 @@
 import React, { useCallback, useState } from 'react';
-import { Container, makeStyles } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+import makeStyles from '@mui/styles/makeStyles';
+import { Container } from '@mui/material';
+import Text from '../../components/Text';
 import { StyleVariables } from '../../styles';
-import Page from '../Page';
-import PetOwnerDropdown from './PetOwnerDropdown';
-import PetList from './PetList';
+import Page from '../../components/Page';
+import PetList from '../../components/PetList';
+import PetOwnerDropdown from '../../components/PetOwnerDropdown';
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -29,9 +30,9 @@ export default function HomePage(): JSX.Element {
   return (
     <Page>
       <Container>
-        <Typography variant="h1" className={classes.title}>
+        <Text as="h1" className={classes.title}>
           Welcome to React App
-        </Typography>
+        </Text>
         <PetOwnerDropdown onChange={handlePetOwnerChange} />
         <PetList ownerId={ownerId} />
       </Container>

@@ -1,11 +1,8 @@
 import React, { ReactChild, ReactFragment, ReactPortal } from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { makeStyles, Theme } from '@material-ui/core';
-import Container from '@material-ui/core/Container';
+import makeStyles from '@mui/styles/makeStyles';
+import { Theme, Container } from '@mui/material';
 import clsx from 'clsx';
-import { ThemeProvider } from '@material-ui/core/styles';
 import { StyleVariables } from '../../styles/variables';
-import { BasicTheme } from '../../styles/theme';
 
 interface PageProps {
   /** An optional className you can provide to override styles */
@@ -34,12 +31,9 @@ export default function Page({ className, children }: PageProps): JSX.Element {
 
   return (
     <div className="page">
-      <CssBaseline />
-      <ThemeProvider theme={BasicTheme}>
-        <Container className={clsx(classes.page, className)} maxWidth={false}>
-          {children}
-        </Container>
-      </ThemeProvider>
+      <Container className={clsx(classes.page, className)} maxWidth={false}>
+        {children}
+      </Container>
     </div>
   );
 }

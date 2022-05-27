@@ -1,52 +1,4 @@
-interface IStyleVariables {
-  colors: {
-    green: string;
-    darkGrey: string;
-    grey: string;
-    blue: string;
-    black: string;
-    red: string;
-    white: string;
-    boxShadow: string;
-  };
-  fonts: {
-    family: {
-      primary: string;
-      secondary: string;
-    };
-    weight: {
-      regular: number;
-      medium: number;
-      bold: number;
-    };
-    size: {
-      regular: string;
-      small: string;
-      smaller: string;
-      xs: string;
-      h1: string;
-      h2: string;
-      h3: string;
-      h4: string;
-      h5: string;
-      h6: string;
-    };
-    lineHeight: {
-      regular: string;
-      small: string;
-      smaller: string;
-      xs: string;
-      h1: string;
-      h2: string;
-      h3: string;
-      h4: string;
-      h5: string;
-      h6: string;
-    };
-  };
-}
-
-const variables: IStyleVariables = {
+export const variables = {
   colors: {
     green: '#2CB22A',
     darkGrey: '#575756',
@@ -94,4 +46,4 @@ const variables: IStyleVariables = {
   },
 };
 
-export { variables as StyleVariables, IStyleVariables };
+export { variables as StyleVariables };

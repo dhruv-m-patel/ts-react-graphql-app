@@ -1,13 +1,19 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import DescriptionIcon from '@material-ui/icons/Description';
-import PaymentIcon from '@material-ui/icons/Payment';
-import PeopleIcon from '@material-ui/icons/People';
-import SettingsIcon from '@material-ui/icons/Settings';
+import {
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ThemeProvider,
+} from '@mui/material';
+import {
+  AccountCircle as AccountCircleIcon,
+  Description as DescriptionIcon,
+  Payment as PaymentIcon,
+  People as PeopleIcon,
+  Settings as SettingsIcon,
+} from '@mui/icons-material';
+import theme from '../../styles/theme';
 import Navigation from './Navigation';
 import Text from '../Text';
 
@@ -23,34 +29,36 @@ describe('Navigation', () => {
     const mockToggleDrawer = jest.fn();
 
     render(
-      <Navigation
-        logoUrl="https://avatars.githubusercontent.com/u/19353311?v=4"
-        logoAltText="Logo"
-        showDrawer
-        onToggleDrawer={mockToggleDrawer}
-        userContent={
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
-            <Text as="small">user@company.com</Text>
-            <AccountCircleIcon fontSize="large" color="primary" />
-          </div>
-        }
-        drawerContent={
-          <React.Fragment>
-            {DrawerItems.map(({ title, icon }) => (
-              <ListItem button key={title}>
-                <ListItemIcon>{icon}</ListItemIcon>
-                <ListItemText primary={title} />
-              </ListItem>
-            ))}
-          </React.Fragment>
-        }
-      />
+      <ThemeProvider theme={theme}>
+        <Navigation
+          logoUrl="https://avatars.githubusercontent.com/u/19353311?v=4"
+          logoAltText="Logo"
+          showDrawer
+          onToggleDrawer={mockToggleDrawer}
+          userContent={
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <Text as="small">user@company.com</Text>
+              <AccountCircleIcon fontSize="large" color="primary" />
+            </div>
+          }
+          drawerContent={
+            <React.Fragment>
+              {DrawerItems.map(({ title, icon }) => (
+                <ListItem button key={title}>
+                  <ListItemIcon>{icon}</ListItemIcon>
+                  <ListItemText primary={title} />
+                </ListItem>
+              ))}
+            </React.Fragment>
+          }
+        />
+      </ThemeProvider>
     );
 
     expect(screen.getByAltText('Logo')).toBeInTheDocument();

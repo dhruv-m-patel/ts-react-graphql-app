@@ -1,7 +1,7 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import MDrawer from '@material-ui/core/Drawer';
-import MToolbar from '@material-ui/core/Toolbar';
+import { Theme } from '@mui/material/styles';
+import { makeStyles, createStyles } from '@mui/styles';
+import { Drawer as MDrawer, Toolbar as MToolbar } from '@mui/material';
 import clsx from 'clsx';
 
 const DRAWER_WIDTH = 240;
