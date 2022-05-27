@@ -1,14 +1,18 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { ThemeProvider } from '@mui/material';
+import theme from '../../styles/theme';
 import AppBar from './AppBar';
 
 describe('Navigation/AppBar', () => {
   test('it should render with defaults', () => {
     render(
-      <AppBar
-        logoUrl="https://avatars.githubusercontent.com/u/19353311?v=4"
-        logoAltText="Logo"
-      />
+      <ThemeProvider theme={theme}>
+        <AppBar
+          logoUrl="https://avatars.githubusercontent.com/u/19353311?v=4"
+          logoAltText="Logo"
+        />
+      </ThemeProvider>
     );
     expect(screen.getByTestId('logoImage').getAttribute('src')).toEqual(
       'https://avatars.githubusercontent.com/u/19353311?v=4'
@@ -20,12 +24,14 @@ describe('Navigation/AppBar', () => {
     const mockDrawerToggle = jest.fn();
 
     render(
-      <AppBar
-        logoUrl="https://avatars.githubusercontent.com/u/19353311?v=4"
-        logoAltText="Logo"
-        showDrawer
-        onToggleDrawer={mockDrawerToggle}
-      />
+      <ThemeProvider theme={theme}>
+        <AppBar
+          logoUrl="https://avatars.githubusercontent.com/u/19353311?v=4"
+          logoAltText="Logo"
+          showDrawer
+          onToggleDrawer={mockDrawerToggle}
+        />
+      </ThemeProvider>
     );
 
     const drawerIcon = screen.getByTestId('drawerIcon');
@@ -37,13 +43,15 @@ describe('Navigation/AppBar', () => {
 
   test('it should render with user content', () => {
     const { container } = render(
-      <AppBar
-        logoUrl="https://avatars.githubusercontent.com/u/19353311?v=4"
-        logoAltText="Logo"
-        showDrawer
-        onToggleDrawer={() => {}}
-        userContent={<span data-testid="testContent">User Content</span>}
-      />
+      <ThemeProvider theme={theme}>
+        <AppBar
+          logoUrl="https://avatars.githubusercontent.com/u/19353311?v=4"
+          logoAltText="Logo"
+          showDrawer
+          onToggleDrawer={() => {}}
+          userContent={<span data-testid="testContent">User Content</span>}
+        />
+      </ThemeProvider>
     );
 
     const testContent = screen.getByTestId('testContent');

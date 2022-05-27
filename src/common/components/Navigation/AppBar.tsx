@@ -13,7 +13,7 @@ import { StyleVariables } from '../../styles/variables';
 
 interface AppBarStyleProps {
   drawerOpen: boolean;
-};
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

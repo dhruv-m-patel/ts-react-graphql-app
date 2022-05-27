@@ -1,5 +1,5 @@
 import { gql } from 'apollo-server-express';
-import { ContextType, UserSearchInput } from '../../types';
+import { ContextType, UserSearchInput, UserType } from '../../types';
 import searchUsers from '../sdk/searchUsers';
 
 export const typeDefs = gql`
@@ -18,7 +18,14 @@ export const typeDefs = gql`
 export const resolvers = {
   Mutation: {},
   Query: {
-    users(_, { search }: { search?: UserSearchInput }, { db }: ContextType) {
+    users(
+      parent: UserType,
+      args: { search?: UserSearchInput },
+      context: ContextType
+    ) {
+      const { search } = args;
+      const { db } = context;
+
       if (search) {
         return searchUsers(db.users, search);
       }
@@ -26,12 +33,16 @@ export const resolvers = {
       return db.users;
     },
 
-    user(_, { id: userId }: { id: number }, { db }: ContextType) {
+    user(parent: UserType, args: { id: number }, context: ContextType) {
+      const { id: userId } = args;
+      const { db } = context;
       return db.users.find((user) => user.id === Number(userId));
     },
   },
   User: {
-    pets({ id }: { id: number }, args, { db }: ContextType) {
+    pets(parent: UserType, args, context: ContextType) {
+      const { id } = parent;
+      const { db } = context;
       return db.pets.filter((pet) => pet.ownerId === id);
     },
   },

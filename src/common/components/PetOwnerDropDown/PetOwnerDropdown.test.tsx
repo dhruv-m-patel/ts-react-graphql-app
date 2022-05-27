@@ -5,11 +5,10 @@ import { ThemeProvider } from '@mui/material';
 import theme from '../../styles/theme';
 import db from '../../../graphql/server/db.json';
 import { ALL_USERS } from '../../components/PetOwnerDropdown';
-import { SEARCH_PETS } from '../../components/PetList';
-import HomePage from './HomePage';
+import PetOwnerDropdown from './PetOwnerDropdown';
 
-describe('HomePage', () => {
-  test('it should render', () => {
+describe('PetOwnerDropdown', () => {
+  test('it should render', async () => {
     const mocks = [
       {
         request: {
@@ -20,25 +19,18 @@ describe('HomePage', () => {
           data: db.users,
         },
       },
-      {
-        request: {
-          query: SEARCH_PETS,
-          variables: {
-            ownerId: -1,
-          },
-        },
-        result: {
-          data: db.pets,
-        },
-      },
     ];
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <ThemeProvider theme={theme}>
-          <HomePage />
+          <PetOwnerDropdown onChange={() => {}} />
         </ThemeProvider>
       </MockedProvider>
     );
-    expect(screen.getByText(/Welcome to React App/)).toBeInTheDocument();
+
+    db.users.forEach(async (user) => {
+      const ownerName = await screen.findByText(user.username);
+      expect(ownerName).toBeInTheDocument();
+    });
   });
 });

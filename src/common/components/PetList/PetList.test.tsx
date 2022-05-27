@@ -4,22 +4,12 @@ import { MockedProvider } from '@apollo/client/testing';
 import { ThemeProvider } from '@mui/material';
 import theme from '../../styles/theme';
 import db from '../../../graphql/server/db.json';
-import { ALL_USERS } from '../../components/PetOwnerDropdown';
 import { SEARCH_PETS } from '../../components/PetList';
-import HomePage from './HomePage';
+import PetList from './PetList';
 
-describe('HomePage', () => {
-  test('it should render', () => {
+describe('PetList', () => {
+  test('it should render', async () => {
     const mocks = [
-      {
-        request: {
-          query: ALL_USERS,
-          variables: {},
-        },
-        result: {
-          data: db.users,
-        },
-      },
       {
         request: {
           query: SEARCH_PETS,
@@ -35,10 +25,14 @@ describe('HomePage', () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <ThemeProvider theme={theme}>
-          <HomePage />
+          <PetList ownerId={-1} />
         </ThemeProvider>
       </MockedProvider>
     );
-    expect(screen.getByText(/Welcome to React App/)).toBeInTheDocument();
+
+    db.pets.forEach(async (pet) => {
+      const petId = await screen.findByText(pet.id);
+      expect(petId).toBeInTheDocument();
+    });
   });
 });

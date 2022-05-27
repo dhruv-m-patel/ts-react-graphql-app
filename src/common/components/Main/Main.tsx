@@ -22,8 +22,8 @@ export default function Main({ children }: MainProps) {
         <ThemeProvider theme={BasicTheme}>
           <CssBaseline />
           {children}
-          </ThemeProvider>
+        </ThemeProvider>
       </StyledEngineProvider>
     </CacheProvider>
-  )
+  );
 }

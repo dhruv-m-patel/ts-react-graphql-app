@@ -12,6 +12,7 @@ import Router from '../../common/router';
 import { createEmotionCache } from '../../common/components/Main';
 import buildContext from '../../graphql/server/context';
 import schema from '../../graphql/server/schema';
+import { ContextType } from '../../graphql/types';
 
 export default async function renderPage(
   req: Request,
@@ -46,7 +47,10 @@ export default async function renderPage(
     const client = new ApolloClient({
       cache: new InMemoryCache(),
       ssrMode: true,
-      link: new SchemaLink({ context: buildContext({ req }), schema }),
+      link: new SchemaLink({
+        context: buildContext({ req: req as unknown as ContextType }),
+        schema,
+      }),
     });
     const graphState = client.extract();
 

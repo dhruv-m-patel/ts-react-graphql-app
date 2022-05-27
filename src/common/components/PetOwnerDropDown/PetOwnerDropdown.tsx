@@ -9,6 +9,7 @@ import {
   InputLabel,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
+import { UserType } from '../../../graphql/types';
 
 export const ALL_USERS = gql`
   query FetchAllUsers {
@@ -46,7 +47,7 @@ export default function PetOwnerDropdown({
       <Select onChange={onChange}>
         <MenuItem value={-1}>Anyone</MenuItem>
         {!!data?.users &&
-          data.users.map(({ id, username }) => (
+          data.users.map(({ id, username }: UserType) => (
             <MenuItem key={id} value={id}>
               {username}
             </MenuItem>

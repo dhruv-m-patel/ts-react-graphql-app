@@ -4,8 +4,8 @@ import { Container } from '@mui/material';
 import Text from '../../components/Text';
 import { StyleVariables } from '../../styles';
 import Page from '../../components/Page';
-import PetOwnerDropdown from '../../components/PetOwnerDropDown';
 import PetList from '../../components/PetList';
+import PetOwnerDropdown from '../../components/PetOwnerDropdown';
 
 const useStyles = makeStyles(() => ({
   title: {

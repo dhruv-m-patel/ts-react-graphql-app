@@ -1,11 +1,13 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { ThemeProvider } from '@mui/material';
+import theme from '../../styles/theme';
 import Text from './Text';
 
 describe('Text', () => {
   test('it should render content', () => {
     render(
-      <>
+      <ThemeProvider theme={theme}>
         <Text as="h1" data-testid="h1">
           Hello
         </Text>
@@ -51,8 +53,9 @@ describe('Text', () => {
         <Text center data-testid="center">
           Hello
         </Text>
-      </>
+      </ThemeProvider>
     );
+
     expect(screen.getByTestId('h1').textContent).toBe('Hello');
     expect(screen.getByTestId('h2').textContent).toBe('Hello');
     expect(screen.getByTestId('h3').textContent).toBe('Hello');
